@@ -1,0 +1,5 @@
+id,name,minPlayers,maxPlayers,genre,avgSession
+1,Hellidivers 2,1,4,Co-op Shooter,60
+2,Deep Rock Galactic,1,4,Co-op Shooter,30
+3,Lethal Company,1,4,Co-op Horror,60
+4,Battlefield 6,1,8,FPS,60

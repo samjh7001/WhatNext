@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="myStyle.css">
+</head>
+<h1>
+    WhatNext...
+</h1>
+<body>
+
+    <div id="CSVTable"></div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script>
+
+<script>
+$(function() {
+  $('#CSVTable').CSVToTable('gameData.csv');
+});
+</script>
+
+
+</body>
+
+</html>
