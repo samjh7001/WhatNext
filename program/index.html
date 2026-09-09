@@ -20,43 +20,25 @@
             <div class="header-mark" aria-hidden="true">WN</div>
         </header>
 
-        <section class="toolbar" aria-label="Game list controls">
-            <label class="search-box">
-                <span class="sr-only">Search games</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 5 5"></path></svg>
-                <input id="searchInput" type="search" placeholder="Search games..." autocomplete="off">
-            </label>
-            <div class="filter-group" role="group" aria-label="Filter games">
-                <button class="filter-button is-active" data-filter="all" type="button">All games</button>
-                <button class="filter-button" data-filter="flagged" type="button">Flagged <span id="flaggedFilterCount">0</span></button>
-            </div>
-        </section>
-
-        <section class="summary" aria-live="polite">
-            <div><strong id="gameCount">0</strong><span>games shown</span></div>
-            <div><strong id="flaggedCount">0</strong><span>flagged to play</span></div>
-        </section>
-
-        <div class="table-wrap">
-            <table id="gameTable" aria-label="Game library">
-                <thead>
-                    <tr>
-                        <th scope="col">Game</th>
-                        <th scope="col">Hours played</th>
-                        <th scope="col">Last played</th>
-                        <th scope="col">Steam Deck</th>
-                        <th scope="col">Tags</th>
-                        <th scope="col">Other users flagged</th>
-                        <th scope="col"><span class="sr-only">Flag action</span></th>
-                    </tr>
-                </thead>
-                <tbody id="gameGrid" aria-live="polite"></tbody>
-            </table>
+        <div class="library-buttons" aria-label="Choose a friend's library">
+            <button class="library-button" data-library="finn" type="button">Finn</button>
+            <button class="library-button" data-library="henry" type="button">Henry</button>
+            <button class="library-button" data-library="ify" type="button">Ify</button>
+            <button class="library-button" data-library="jack" type="button">Jack</button>
+            <button class="library-button" data-library="joe" type="button">Joe</button>
+            <button class="library-button" data-library="john" type="button">John</button>
+            <button class="library-button" data-library="juan" type="button">Juan</button>
+            <button class="library-button" data-library="max" type="button">Max</button>
+            <button class="library-button" data-library="sam" type="button">Sam</button>
         </div>
-        <p id="emptyState" class="empty-state" hidden>No games match that search.</p>
-        <p id="errorState" class="error-state" hidden>We could not load the game list. Please check that the page is being served locally.</p>
     </main>
 
-    <script src="dataContainer.js"></script>
+    <script>
+        document.querySelectorAll('[data-library]').forEach((button) => {
+            button.addEventListener('click', () => {
+                window.location.href = `libraries.html?owner=${button.dataset.library}`;
+            });
+        });
+    </script>
 </body>
 </html>

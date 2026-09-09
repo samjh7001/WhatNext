@@ -6,10 +6,31 @@ const gameCount = document.querySelector('#gameCount');
 const flaggedCount = document.querySelector('#flaggedCount');
 const flaggedFilterCount = document.querySelector('#flaggedFilterCount');
 const filterButtons = document.querySelectorAll('.filter-button');
+const accountInput = document.querySelector('#accountInput');
 
-const flaggedGames = new Set(JSON.parse(localStorage.getItem('whatnext-flagged') || '[]'));
+const libraryFiles = {
+  finn: '../finnLibrary.csv',
+  henry: '../henryLibrary.csv',
+  ify: '../ifyLibrary.csv',
+  jack: '../jackLibrary.csv',
+  joe: '../joeLibrary.csv',
+  john: '../johnLibrary.csv',
+  juan: '../juanLibrary.csv',
+  max: '../maxLibrary.csv',
+  sam: '../samLibrary.csv'
+};
+const selectedOwner = new URLSearchParams(window.location.search).get('owner') || 'sam';
+const accountKey = 'whatnext-account';
+let accountName = localStorage.getItem(accountKey) || 'My library';
+accountInput.value = accountName;
+let flaggedGames = new Set();
 let games = [];
 let activeFilter = 'all';
+
+function loadFlags() {
+  const savedFlags = JSON.parse(localStorage.getItem(`whatnext-flagged-${accountName}`) || '[]');
+  flaggedGames = new Set(savedFlags);
+}
 
 function parseCsv(csv) {
   const rows = csv.trim().split(/\r?\n/).map((row) => {
@@ -44,7 +65,7 @@ function parseCsv(csv) {
 }
 
 function saveFlags() {
-  localStorage.setItem('whatnext-flagged', JSON.stringify([...flaggedGames]));
+  localStorage.setItem(`whatnext-flagged-${accountName}`, JSON.stringify([...flaggedGames]));
 }
 
 function gameMatches(game) {
@@ -85,6 +106,14 @@ function renderGames() {
   emptyState.hidden = visibleGames.length !== 0;
 }
 
+function updateAccount() {
+  const newAccountName = accountInput.value.trim() || 'My library';
+  accountName = newAccountName;
+  localStorage.setItem(accountKey, accountName);
+  loadFlags();
+  renderGames();
+}
+
 gameGrid.addEventListener('click', (event) => {
   const button = event.target.closest('.flag-button');
   if (!button) return;
@@ -95,18 +124,21 @@ gameGrid.addEventListener('click', (event) => {
 });
 
 searchInput.addEventListener('input', renderGames);
+accountInput.addEventListener('change', updateAccount);
 filterButtons.forEach((button) => button.addEventListener('click', () => {
   activeFilter = button.dataset.filter;
   filterButtons.forEach((filterButton) => filterButton.classList.toggle('is-active', filterButton === button));
   renderGames();
 }));
 
-fetch('../libraryTest.csv')
+const libraryFile = libraryFiles[selectedOwner];
+fetch(libraryFile || libraryFiles.sam)
   .then((response) => {
     if (!response.ok) throw new Error('CSV request failed');
     return response.text();
   })
   .then((csv) => {
+    loadFlags();
     games = parseCsv(csv);
     renderGames();
   })

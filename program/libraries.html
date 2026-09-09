@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatNext | Game list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css">
+</head>
+<body>
+    <main class="app-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">FRIENDS' GAME LIBRARY</p>
+                <h1>What<span>Next</span>?</h1>
+                <p class="intro">Keep the next game night moving. Flag the titles your group is ready to play.</p>
+            </div>
+            <div class="header-mark" aria-hidden="true">WN</div>
+        </header>
+
+        <section class="toolbar" aria-label="Game list controls">
+            <label class="account-box">
+                <span>Library account</span>
+                <input id="accountInput" type="text" placeholder="Enter account name" autocomplete="username">
+            </label>
+            <label class="search-box">
+                <span class="sr-only">Search games</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 5 5"></path></svg>
+                <input id="searchInput" type="search" placeholder="Search games..." autocomplete="off">
+            </label>
+            <div class="filter-group" role="group" aria-label="Filter games">
+                <button class="filter-button is-active" data-filter="all" type="button">All games</button>
+                <button class="filter-button" data-filter="flagged" type="button">Flagged <span id="flaggedFilterCount">0</span></button>
+            </div>
+        </section>
+
+        <section class="summary" aria-live="polite">
+            <div><strong id="gameCount">0</strong><span>games shown</span></div>
+            <div><strong id="flaggedCount">0</strong><span>flagged to play</span></div>
+        </section>
+
+        <div class="table-wrap">
+            <table id="gameTable" aria-label="Game library">
+                <thead>
+                    <tr>
+                        <th scope="col">Game</th>
+                        <th scope="col">Hours played</th>
+                        <th scope="col">Last played</th>
+                        <th scope="col">Steam Deck</th>
+                        <th scope="col">Tags</th>
+                        <th scope="col">Other users flagged</th>
+                        <th scope="col"><span class="sr-only">Flag action</span></th>
+                    </tr>
+                </thead>
+                <tbody id="gameGrid" aria-live="polite"></tbody>
+            </table>
+        </div>
+        <p id="emptyState" class="empty-state" hidden>No games match that search.</p>
+        <p id="errorState" class="error-state" hidden>We could not load the game list. Please check that the page is being served locally.</p>
+    </main>
+
+    <script src="dataContainer.js"></script>
+</body>
+</html>
