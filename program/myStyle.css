@@ -28,7 +28,7 @@ body::before {
 	background: var(--green);
 }
 
-.app-shell { max-width: 1120px; margin: 0 auto; padding: 72px 28px 64px; }
+.app-shell { max-width: 1440px; margin: 0 auto; padding: 72px 28px 64px; }
 .page-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 52px; }
 .eyebrow { color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: 2px; margin: 0 0 12px; }
 h1, h2 { font-family: 'Space Grotesk', sans-serif; }
@@ -49,17 +49,17 @@ h1 span { color: var(--green); }
 .summary strong { font: 700 27px 'Space Grotesk', sans-serif; }
 .summary span { color: var(--muted); font-size: 13px; }
 .table-wrap { background: var(--card); border: 1px solid var(--line); overflow-x: auto; }
-table { border-collapse: collapse; min-width: 980px; text-align: left; width: 100%; }
+table { border-collapse: collapse; min-width: 0; table-layout: auto; text-align: left; width: 100%; }
 th, td { border-bottom: 1px solid var(--line); font-size: 13px; padding: 15px 18px; white-space: nowrap; }
 thead th { background: #eef1e9; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 tbody tr:hover { background: #fbfcf5; }
 tbody tr.is-flagged { background: #fff7f1; }
-.game-id { color: var(--muted); font-size: 12px; font-weight: 700; }
-.game-name { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; min-width: 230px; }
+.game-name { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; min-width: 250px; }
 .tag-cell { max-width: 330px; white-space: normal; }
 .tag { background: #edf2df; color: var(--green); display: inline-block; font-size: 11px; margin: 2px 4px 2px 0; padding: 4px 7px; }
 .tag-more { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.community-flags { color: var(--orange); font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; text-align: center; }
 .action-cell { text-align: right; }
 .flag-button { align-items: center; background: var(--green); border: 0; color: white; cursor: pointer; display: inline-flex; font: 700 12px 'DM Sans', sans-serif; gap: 6px; justify-content: center; min-width: 80px; padding: 9px 11px; }
 tbody tr.is-flagged .flag-button { background: var(--orange); }

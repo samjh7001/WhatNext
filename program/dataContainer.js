@@ -61,14 +61,15 @@ function renderGames() {
     const visibleTags = game.tags.slice(0, 4);
     const extraTagCount = game.tags.length - visibleTags.length;
     const tagMarkup = visibleTags.map((tag) => `<span class="tag">${tag}</span>`).join('');
+    const otherUsersFlagged = Number(game.other_users_flagged || game.community_flags || 0);
     return `
       <tr class="${isFlagged ? 'is-flagged' : ''}">
-        <td class="game-id">#${String(game.id).padStart(2, '0')}</td>
         <th scope="row" class="game-name">${game.game}</th>
         <td>${game.hours ? Number(game.hours).toFixed(1) : '0.0'}</td>
         <td>${game.last_played || 'Never'}</td>
         <td>${game.steam_deck || 'Unknown'}</td>
         <td class="tag-cell">${tagMarkup}${extraTagCount > 0 ? `<span class="tag tag-more">+${extraTagCount}</span>` : ''}</td>
+        <td class="community-flags">${otherUsersFlagged}</td>
         <td class="action-cell">
         <button class="flag-button" type="button" data-game-id="${game.id}" aria-pressed="${isFlagged}">
           <span class="flag-icon" aria-hidden="true">${isFlagged ? '★' : '☆'}</span>
